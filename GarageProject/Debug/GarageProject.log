@@ -1,3 +1,8 @@
 ﻿  GarageProject.cpp
-C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(130,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(218,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(233,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(241,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(252,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(263,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(328,8): warning C4101: 'inBicycleNumberOfWheels': unreferenced local variable
   GarageProject.vcxproj -> C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\Debug\GarageProject.exe
