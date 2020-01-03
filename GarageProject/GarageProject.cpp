@@ -1,19 +1,21 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <chrono>
 
 using namespace std;
-
-//global variabels
+//Global variables
 int counter=0;
 int bicycleCounter = 0;
 int motorcycleCounter = 0;
 int carCounter = 0;
+int busCounter = 0;
+int truckCounter = 0;
 int sizeGarage = 0;
 string userSearch = "";
 
-
-class Vehicle //headclass of vehicles such as cars,bikes trucks etc.
+//Abstract headclass 
+class Vehicle
 {
 private:
 
@@ -26,68 +28,86 @@ protected:
 	short int numberOfWheels;
 
 public:	
-	Vehicle(string a, string b, string c, string d, string e, short int i) : vehicleType (a), manufacturer(b), model(c), registrationNumber(d), colour(e), numberOfWheels(i) //Constructor
+	Vehicle(string a, string b, string c, string d, string e, short int i) : vehicleType (a), manufacturer(b), model(c), registrationNumber(d), colour(e), numberOfWheels(i)
 	{
 	}
-	virtual void set_Chassi(string x) {};
-	virtual string get_Chassi() { return ""; };
-	virtual void set_Horsepower(int x) {};
-	virtual int get_Horsepower() { return 0; };
+
+	string get_VehicleType() { return vehicleType; };
+	string get_Manufacturer() { return manufacturer; };
+	string get_Model() { return model; };
+	string get_RegistrationNumber() { return registrationNumber; };
+	string get_Colour() { return colour; };
+	int get_NumberOfWheels() { return numberOfWheels; };
+
+	virtual void set_numberOfGears(int x) {};
+	virtual int get_numberOfGears() { return 0; };
+	virtual void set_Year(int x) {};
+	virtual int get_Year() { return 0; };
 
 	virtual void set_numberOfCylinders(short int x) {};
 	virtual short int get_numberOfCylinders() { return 0; };
 	virtual void set_chassiNumber(int x) {};
 	virtual int get_chassiNumber() { return 0; };
-	   	 
-	string get_VehicleType() { return vehicleType; };
-	string get_Manufacturer() { return manufacturer; };
-	string get_Model() {return model; };
-	string get_RegistrationNumber() { return registrationNumber; };
-	string get_Colour() { return colour; };
-	int get_NumberOfWheels() { return numberOfWheels; };
-	
+
+	virtual void set_Chassi(string x) {};
+	virtual string get_Chassi() { return ""; };
+	virtual void set_Horsepower(int x) {};
+	virtual int get_Horsepower() { return 0; };
+
+	virtual void set_NumberOfPassengers(int x) {};
+	virtual int get_NumberOfPassengers() { return 0; };
+	virtual void set_NumberOfDoors(int x) {};
+	virtual int get_NumberOfDoors() { return 0; };
+
+	virtual void set_Load(string x) {};
+	virtual string get_Load() { return ""; };
+	virtual void set_Weight(int x) {};
+	virtual int get_Weight() { return 0; };
+		
 	virtual void output() = 0;
-	virtual ~Vehicle() //dekonstructor
-	{
-	};
+	virtual ~Vehicle(){};
 };
 
+//Subclasses inherited from headclass, with 2 extra attributes
 class Bicycle : public Vehicle
 {
 protected:
 	short int numberOfGears;
-	
+	int year;	
 
 public:
 
-	Bicycle(string a, string b, string c, string d, string e, short int i, short int inkNumberOfGears) : Vehicle(a, b, c, d, e, i)
+	Bicycle(string a, string b, string c, string d, string e, short int i, short int inkNumberOfGears, int inkYear) : Vehicle(a, b, c, d, e, i)
 	{
 		vehicleType = "Bicycle";
 		numberOfGears = inkNumberOfGears;
-		cout << "Bicycle created" << endl;
+		year = inkYear;
+		cout << "Bicycle created" << "\n" << endl;
 	}
 	void set_NumberOfGears(short int x)
 	{
 		numberOfGears = x;
 	}
 
+	void set_Year(int x)
+	{
+		year = x;
+	}
+
+	int get_NumberOfGears() { return numberOfGears; };
+	int get_Year() { return year; };
 
 	void output()
 	{
-		cout << "*************\n" << "Type: " << this->vehicleType << "\nManufacturer: " << this->manufacturer << " \nModel: " << this->model << "\nRegistrationnumber: " << this->registrationNumber << "\nColour: " << this->colour << "\nNumber of wheels: " << this->numberOfWheels << "\n*************" << endl;
+		cout << "\n*************\n" << "Type: " << this->vehicleType << "\nManufacturer: " << this->manufacturer << " \nModel: " << this->model << "\nRegistrationnumber: " << this->registrationNumber << "\nColour: " << this->colour << "\nNumber of wheels: " << this->numberOfWheels << "\nNumber of gears: " << this->numberOfGears << "\nYear: " << this->year << "\n*************\n" << endl;
 	}
 
-	void PrintAllTypeOfVehicles()
-	{
-		cout << "Number of bicycels in the garage is: " << bicycleCounter << endl;
-	}
-
-	~Bicycle() //dekonstructor
-	{
-		//cout << "This is the deconstructor of BICYCLE" << endl;		
+	~Bicycle()
+	{				
 	};
 };
 
+//Subclasses inherited from headclass, with 2 extra attributes
 class Motorcycle : public Vehicle
 {
 protected:
@@ -104,10 +124,12 @@ public:
 
 		cout << "Motorcycle created" << "\n" << endl;
 	}
+
 	void set_NumberOfCylinders(short int x)
 	{
 		numberOfCylinders = x;
 	}
+
 	void set_ChassiNumber(int x)
 	{
 		chassiNumber = x;
@@ -115,20 +137,15 @@ public:
 
 	void output()
 	{
-		cout << "*************\n" << "Type: " << this->vehicleType << "\nManufacturer: " << this->manufacturer << " \nModel: " << this->model << "\nRegistrationnumber: " << this->registrationNumber << "\nColour: " << this->colour << "\nNumber of wheels: " << this->numberOfWheels << "\nNumber of cylinders: " << this->numberOfCylinders << "\nChassinumber: "<< this->chassiNumber<<"\n*************" << endl;
+		cout << "\n*************\n" << "Type: " << this->vehicleType << "\nManufacturer: " << this->manufacturer << " \nModel: " << this->model << "\nRegistrationnumber: " << this->registrationNumber << "\nColour: " << this->colour << "\nNumber of wheels: " << this->numberOfWheels << "\nNumber of cylinders: " << this->numberOfCylinders << "\nChassinumber: "<< this->chassiNumber<<"\n*************\n" << endl;
 	}
 
-	void PrintAllTypeOfVehicles()
-	{
-		cout << "Number of motorcycels in the garage is: " << motorcycleCounter << endl;
-	}
-
-	~Motorcycle() //dekonstructor
-	{
-		//cout << "This is the deconstructor of MOTORCYCLE" << endl;		
+	~Motorcycle()
+	{				
 	};
 };
 
+//Subclasses inherited from headclass, with 2 extra attributes
 class Car : public Vehicle
 {
 protected:	
@@ -158,116 +175,316 @@ public:
 	
 	void output()
 	{
-		cout << "*************\n" << "Type: " << this->vehicleType << "\nManufacturer: " << this->manufacturer << " \nModel: " << this->model << "\nRegistrationnumber: " << this->registrationNumber << "\nColour: " << this->colour << "\nNumber of wheels: " << this->numberOfWheels << "\nChassi: " << this->chassi << "\nHorsepower: " << this->horsePower << "\n*************" << endl;
-	}
-	void PrintAllTypeOfVehicles()
-	{
-		cout << "Number of cars in the garage is now: " << carCounter << endl;
+		cout << "\n*************\n" << "Type: " << this->vehicleType << "\nManufacturer: " << this->manufacturer << " \nModel: " << this->model << "\nRegistrationnumber: " << this->registrationNumber << "\nColour: " << this->colour << "\nNumber of wheels: " << this->numberOfWheels << "\nChassi: " << this->chassi << "\nHorsepower: " << this->horsePower << "\n*************\n" << endl;
 	}	
 
-	~Car() //dekonstructor
-	{
-		//cout << "This is the deconstructor of CAR" << endl;
+	~Car()
+	{		
 	};
 };
 
-
-class Garage //representation of the "building" itself. The garage can store x number of vehicles
+//Subclasses inherited from headclass, with 2 extra attributes
+class Bus : public Vehicle
 {
 protected:
+	int numberOfDoors;
+	int numberOfPassengers;
 
 public:
-	
+	Bus(string a, string b, string c, string d, string e, short int i, int inkNumberOfDoors, int inkNumberOfPassengers) : Vehicle(a, b, c, d, e, i)
+	{
+		vehicleType = "Bus";
+		numberOfDoors = inkNumberOfDoors;
+		numberOfPassengers = inkNumberOfPassengers;
+		cout << "Bus created" << "\n" << endl;
+	}
+
+	void set_NumberOfPassengers(int x)
+	{
+		numberOfPassengers = x;
+	}	
+
+	int get_NumberOfPassengers() { return numberOfPassengers; };
+
+	void set_NumberOfDoors(int x)
+	{
+		numberOfDoors = x;
+	}
+
+	int get_NumberOfDoors() { return numberOfDoors; };
+
+	void output()
+	{
+		cout << "\n*************\n" << "Type: " << this->vehicleType << "\nManufacturer: " << this->manufacturer << " \nModel: " << this->model << "\nRegistrationnumber: " << this->registrationNumber << "\nColour: " << this->colour << "\nNumber of wheels: " << this->numberOfWheels << "\nNumber of doors: " << this->numberOfDoors << "\nNumber of passengers: " << this->numberOfPassengers << "\n*************\n" << endl;
+	}
+
+	~Bus()
+	{	
+	};
+};
+
+//Subclasses inherited from headclass, with 2 extra attributes
+class Truck : public Vehicle
+{
+protected:
+	int weight;
+	string load;
+
+public:
+	Truck(string a, string b, string c, string d, string e, short int i, int inkWeight, string inkLoad) : Vehicle(a, b, c, d, e, i)
+	{
+		vehicleType = "Truck";
+		weight = inkWeight;
+		load = inkLoad;
+		cout << "Truck created" << "\n" << endl;
+	}
+
+	void set_Load(string x)
+	{
+		load = x;
+	}
+
+	void set_Weight(int x)
+	{
+		weight=x;
+	}
+
+	string get_Load() { return load; };
+	int get_Weight() { return weight; };
+
+	void output()
+	{
+		cout << "\n*************\n" << "Type: " << this->vehicleType << "\nManufacturer: " << this->manufacturer << " \nModel: " << this->model << "\nRegistrationnumber: " << this->registrationNumber << "\nColour: " << this->colour << "\nNumber of wheels: " << this->numberOfWheels << "\nWeight: "<< this->weight <<"\nType of load: " << this->load << "\n*************\n" << endl;
+	}
+
+	~Truck()
+	{		
+	};
+};
+
+//Garageclass, represent the "building" itself and stores all the different types of vehicles
+class Garage
+{
+protected:
 	vector <Vehicle*> myGarage;
-	int numberOfVehicles()  // returns the total number of vehicles stored in the garage
-	{ 
-		cout << "Total number of vehicles in the garage is: ";
+public:	
+	
+	int numberOfVehicles() 
+	{	
 		return myGarage.size();
 	}
 	   	 
 	void addVehicle(Vehicle* x)
-	{
-
-		if (numberOfVehicles() < sizeGarage)
-		{		
-			myGarage.push_back(x);	
-			counter++;
-			//cout << "New vehicle parked in the garage. Number of vehicles is now: " << counter  <<"\n"<< endl;
-		
-			if (x->get_VehicleType() == "Bicycle")
-			{
-				bicycleCounter++;
-			}
-			if (x->get_VehicleType() == "Motorcycle")
-			{
-				motorcycleCounter++;			
-			}
-			if (x->get_VehicleType() == "Car")
-			{
-				carCounter++;
-			}
-		}
-		else
+	{				
+		myGarage.push_back(x);	
+		counter++;
+				
+		if (x->get_VehicleType() == "Bicycle")
 		{
-			cout << "Garage is full, your vehicle could not be parked" << endl;
+			bicycleCounter++;
+		}
+		if (x->get_VehicleType() == "Motorcycle")
+		{
+			motorcycleCounter++;			
+		}
+		if (x->get_VehicleType() == "Car")
+		{
+			carCounter++;
+		}
+		if (x->get_VehicleType() == "Bus")
+		{
+			busCounter++;
+		}
+		if (x->get_VehicleType() == "Truck")
+		{
+			truckCounter++;
 		}
 	}
 
-	Vehicle* SearchAndRemove(vector <Vehicle*> &x, string y)
+	Vehicle* SearchAndRemove(string y)
 	{
-		for (int i = 0; i < x.size(); i++)
+		
+		for (int i = 0; i < myGarage.size(); i++)
 		{
-			if (x[i]->get_RegistrationNumber() == y)
+			if (myGarage[i]->get_RegistrationNumber() == y)
 			{
-				cout << "Found your vehicle, it is now being removed" << endl;
-				delete x[i];
-				x.erase(remove(x.begin(), x.end(), x[i]), x.end());
+
+				if (myGarage[i]->get_VehicleType() == "Bicycle")
+				{
+					bicycleCounter--;
+				}
+				if (myGarage[i]->get_VehicleType() == "Motorcycle")
+				{
+					motorcycleCounter--;
+				}
+				if (myGarage[i]->get_VehicleType() == "Car")
+				{
+					carCounter--;
+				}
+				if (myGarage[i]->get_VehicleType() == "Bus")
+				{
+					busCounter--;
+				}
+				if (myGarage[i]->get_VehicleType() == "Truck")
+				{
+					truckCounter--;
+				}
+
+				cout << "Found your vehicle, it is now being removed\n" << endl;
+				myGarage[i]->output();
+				delete myGarage[i];
+				counter--;
+
+				myGarage.erase(remove(myGarage.begin(), myGarage.end(), myGarage[i]), myGarage.end());
 				break;
 			}
 		}
+		cout <<"Number of vehicles is now: "<< counter << endl;
 		return 0;
 	}
 
-	void printAllVehicles(vector <Vehicle*> x)
+	//delete the object in the vector and clears vector
+	Vehicle* Destroy()
 	{
-		for (int i = 0; i < x.size(); i++)
+		for (int i = 0; i < myGarage.size(); i++)
+		{ 
+			delete myGarage[i];
+		}
+		cout << "The garage is now destroyed!" << endl;
+		myGarage.clear();
+		return 0;
+	}
+
+	void printAllVehicles()
+	{
+		for (int i = 0; i < myGarage.size(); i++)
 		{			
-			x[i]->output();			
+			myGarage[i]->output();
 		}
+
+		cout << "Number of vehicles in the garage is: " << counter << "\n" << endl;		
 	}
 
-	void printAllCars(vector <Vehicle*> x)
+	void printAllBicycles()
 	{
-		for (int i = 0; i < x.size(); i++)
+		for (int i = 0; i < myGarage.size(); i++)
 		{
-			if (x[i]->get_VehicleType()=="Car")
+			if (myGarage[i]->get_VehicleType() == "Bicycle")
 			{
-				x[i]->output();
+				myGarage[i]->output();
 			}
 		}
+
+		cout << "Number of bicycles in the garage is: " << bicycleCounter << "\n" << endl;	
 	}
 
-	void printAllMotorcycles(vector <Vehicle*> x)
+	void printAllMotorcycles()
 	{
-		for (int i = 0; i < x.size(); i++)
+		for (int i = 0; i < myGarage.size(); i++)
 		{
-			if (x[i]->get_VehicleType() == "Motorcycle")
+			if (myGarage[i]->get_VehicleType() == "Motorcycle")
 			{
-				x[i]->output();
+				myGarage[i]->output();
 			}
 		}
+		cout << "Number of motorcycles in the garage is: " << motorcycleCounter << "\n" << endl;
 	}
 
-	void searchRegnr(vector <Vehicle*> x, string y)
+	void printAllCars()
 	{
-		for (int i = 0; i < x.size(); i++)
+		for (int i = 0; i < myGarage.size(); i++)
 		{
-			if (x[i]->get_RegistrationNumber() == y)
+			if (myGarage[i]->get_VehicleType()=="Car")
+			{
+				myGarage[i]->output();
+			}
+		}
+
+		cout << "Number of cars in the garage is: " << carCounter << "\n" << endl;
+	}
+
+	void printAllBuses()
+	{
+		for (int i = 0; i < myGarage.size(); i++)
+		{
+			if (myGarage[i]->get_VehicleType() == "Bus")
+			{
+				myGarage[i]->output();
+			}
+		}
+		cout << "Number of buses in the garage is: " << busCounter << "\n" << endl;
+	}
+
+	void printAllTrucks()
+	{
+		for (int i = 0; i < myGarage.size(); i++)
+		{
+			if (myGarage[i]->get_VehicleType() == "Truck")
+			{
+				myGarage[i]->output();
+			}
+		}
+		cout << "Number of trucks in the garage is: " << truckCounter << "\n" << endl;
+	}
+	
+	void searchRegnr(string y)
+	{
+		for (int i = 0; i < myGarage.size(); i++)
+		{
+			if (myGarage[i]->get_RegistrationNumber() == y)
 			{
 				cout << "FOUND YOUR VEHICLE!!!!"<< endl;
-				x[i]->output();
+				myGarage[i]->output();
 				break;
 			}			
+		}
+	}
+
+	void searchByAttributManufacturer(string y)
+	{
+		for (int i = 0; i < myGarage.size(); i++)
+		{
+			if (myGarage[i]->get_Manufacturer() == y)
+			{
+				cout << "\nFOUND A VEHICLE WITH THE ATTRIBUT YOU SEARCHED FOR!\n" << endl;
+				myGarage[i]->output();
+			}
+		}
+	}
+
+	void searchByAttributModel(string y)
+	{
+		for (int i = 0; i < myGarage.size(); i++)
+		{
+			if (myGarage[i]->get_Model() == y)
+			{
+				cout << "\nFOUND A VEHICLE WITH THE ATTRIBUT YOU SEARCHED FOR!\n" << endl;
+				myGarage[i]->output();
+			}
+		}
+	}
+
+	void searchByAttributColour(string y)
+	{
+		for (int i = 0; i < myGarage.size(); i++)
+		{
+			if (myGarage[i]->get_Colour() == y)
+			{
+				cout << "\nFOUND A VEHICLE WITH THE ATTRIBUT YOU SEARCHED FOR!\n" << endl;
+				myGarage[i]->output();
+			}
+		}
+	}
+
+	void searchByAttributNumberOfWheels(int y)
+	{
+		for (int i = 0; i < myGarage.size(); i++)
+		{
+			if (myGarage[i]->get_NumberOfWheels() == y)
+			{
+				cout << "\nFOUND A VEHICLE WITH THE ATTRIBUT YOU SEARCHED FOR!\n" << endl;
+				myGarage[i]->output();
+			}
 		}
 	}
 
@@ -276,7 +493,7 @@ public:
 	};
 };
 
-
+//Main-function with menu that calls functions from classes
 int main()
 {
 	int selection;
@@ -285,9 +502,21 @@ int main()
 	cout << "To start, enter the size of the garage: ";
 	cin >> sizeGarage;
 	cout << endl;
+	Garage garage;
 
-	Garage garage; //Create a garage-object
-	
+	//DEMO-VEHICLES. these will be added to the garage, even if you enter a "garagesize" smaller then 5.
+	Vehicle* ptrBicycle = new Bicycle("", "Monark", "Citybike", "CYC123", "Green", 2, 1,1990);
+	garage.addVehicle(ptrBicycle);
+	Vehicle* ptrMotorcycle = new Motorcycle("", "Kawasaki", "ER6n", "HML584", "Black", 2, 2, 123456789);
+	garage.addVehicle(ptrMotorcycle);
+	Vehicle* ptrCar = new Car("", "Volvo", "V70", "CAR123", "Black", 4, "Kombi", 250);
+	garage.addVehicle(ptrCar);
+	Vehicle* ptrBus = new Bus("", "Scania", "DX", "BUS123", "Black", 8, 3, 50);
+	garage.addVehicle(ptrBus);
+	Vehicle* ptrTruck = new Truck("", "Volvo", "D500", "LAS123", "White", 8, 8000, "Stone");
+	garage.addVehicle(ptrTruck);
+
+	//A "do/while"-loop best suted for menu because you want to run it atleast once!
 	do
 	{
 		cout << "  ====================================\n";
@@ -300,7 +529,7 @@ int main()
 		cout << "  5.  List all vehicles in garage\n";
 		cout << "  6.  List type of vehicles\n"; 
 		cout << "\n";
-		cout << "  0.  Exit\n";
+		cout << "  0.  Empty garage and exit\n";
 		cout << "\n";
 		cout << "  ====================================\n";
 		cout << "  Enter your selection: ";
@@ -311,6 +540,7 @@ int main()
 		{
 		case 1:
 		{
+			system("cls");
 			int addVehicleInput;
 			cout << endl;
 			cout << "What type of vehicle would you like to add?" << endl;
@@ -321,173 +551,213 @@ int main()
 			cout << "5. Truck" << endl;
 			cin >> addVehicleInput;
 
-			string inBicycleManufacturer;
-			string inBicycleModel;
-			string  inBicycleRegnumber;
-			string inBicycleColour;
-			int inBicycleNumberOfWheels;
+			string inManufacturer;
+			string inModel;
+			string  inRegnumber;
+			string inColour;
+			int inNumberOfWheels;
 
-			if (addVehicleInput == 1)
-			{
-				string inBicycleManufacturer;
-				string inBicycleModel;
-				string  inBicycleRegnumber;
-				string inBicycleColour;
-				int inBicycleNumberOfWheels;
-				short int inBicycleNumberOfGears;
+			if (garage.numberOfVehicles() < sizeGarage)
+			{									
+				if (addVehicleInput == 1)
+				{
+					short int inBicycleNumberOfGears;
+					int inYear;
+					cout << "Enter manufacturer: " << endl;
+					cin >> inManufacturer;
+					cout << "Enter model: " << endl;
+					cin >> inModel;
+					cout << "Enter regnumber: " << endl;
+					cin >> inRegnumber;
+					cout << "Enter colour:" << endl;
+					cin >> inColour;
+					cout << "Enter number of wheels: " << endl;
+					cin >> inNumberOfWheels;
+					cout << "Enter number of gears: " << endl;
+					cin >> inBicycleNumberOfGears;
+					cout << "Enter what year it was manufactured: " << endl;
+					cin >> inYear;
 
-				cout << "Enter manufacturer: " << endl;
-				cin >> inBicycleManufacturer;
-				cout << "Enter model: " << endl;
-				cin >> inBicycleModel;
-				cout << "Enter regnumber: " << endl;
-				cin >> inBicycleRegnumber;
-				cout << "Enter colour:" << endl;
-				cin >> inBicycleColour;
-				cout << "Enter number of wheels: " << endl;
-				cin >> inBicycleNumberOfWheels;
-				cout << "Enter number of gears: " << endl;
-				cin >> inBicycleNumberOfGears;
+					Vehicle* ptrBicycle = new Bicycle("", inManufacturer, inModel, inRegnumber, inColour, inNumberOfWheels, inBicycleNumberOfGears, inYear);
+					garage.addVehicle(ptrBicycle);
+				}
 
-				Vehicle* ptrBicycle = new Bicycle("", inBicycleManufacturer, inBicycleModel, inBicycleRegnumber, inBicycleColour, inBicycleNumberOfWheels, inBicycleNumberOfGears);
-				garage.addVehicle(ptrBicycle);
+				if (addVehicleInput == 2)
+				{
+					short int inMotorcycleNumberOfCylinders;
+					int inMotorcycleChassiNumber;
+					cout << "Enter manufacturer: " << endl;
+					cin >> inManufacturer;
+					cout << "Enter model: " << endl;
+					cin >> inModel;
+					cout << "Enter regnumber: " << endl;
+					cin >> inRegnumber;
+					cout << "Enter colour:" << endl;
+					cin >> inColour;
+					cout << "Enter number of wheels: " << endl;
+					cin >> inNumberOfWheels;
+					cout << "Enter number of cylinders: " << endl;
+					cin >> inMotorcycleNumberOfCylinders;
+					cout << "Enter chassinumber: " << endl;
+					cin >> inMotorcycleChassiNumber;
+					Vehicle* ptrMotorcycle = new Motorcycle("", inManufacturer, inModel, inRegnumber, inColour, inNumberOfWheels, inMotorcycleNumberOfCylinders, inMotorcycleChassiNumber);
+					garage.addVehicle(ptrMotorcycle);
+				}
+
+				if (addVehicleInput == 3)
+				{
+					string inCarChassi;
+					int inCarHorsepower;
+					cout<< "Enter manufacturer: " << endl;
+					cin >> inManufacturer;
+					cout << "Enter model: " << endl;
+					cin >> inModel;
+					cout << "Enter regnumber: " << endl;
+					cin >> inRegnumber;
+					cout << "Enter colour:" << endl;
+					cin >> inColour;
+					cout << "Enter number of wheels: " << endl;
+					cin >> inNumberOfWheels;
+					cout << "Enter chassitype: " << endl;
+					cin >> inCarChassi;
+					cout << "Enter horsepower: " << endl;
+					cin >> inCarHorsepower;
+					Vehicle* ptrCar = new Car("", inManufacturer, inModel, inRegnumber, inColour, inNumberOfWheels, inCarChassi, inCarHorsepower);
+					garage.addVehicle(ptrCar);				
+				}
+
+				if (addVehicleInput == 4)
+				{
+					int inNumberOfDoors;
+					int inNumberOfPassengers;
+					cout << "Enter manufacturer: " << endl;
+					cin >> inManufacturer;
+					cout << "Enter model: " << endl;
+					cin >> inModel;
+					cout << "Enter regnumber: " << endl;
+					cin >> inRegnumber;
+					cout << "Enter colour:" << endl;
+					cin >> inColour;
+					cout << "Enter number of wheels: " << endl;
+					cin >> inNumberOfWheels;
+					cout << "Enter capacity (number of passengers): " << endl;
+					cin >> inNumberOfPassengers;
+					cout << "Enter number of doors: " << endl;
+					cin >> inNumberOfDoors;
+					Vehicle* ptrBus = new Bus("", inManufacturer, inModel, inRegnumber, inColour, inNumberOfWheels, inNumberOfDoors, inNumberOfPassengers);
+					garage.addVehicle(ptrBus);
+				}
+
+				if (addVehicleInput == 5)
+				{
+					int inWeight;
+					string inLoad;
+					cout << "Enter manufacturer: " << endl;
+					cin >> inManufacturer;
+					cout << "Enter model: " << endl;
+					cin >> inModel;
+					cout << "Enter regnumber: " << endl;
+					cin >> inRegnumber;
+					cout << "Enter colour:" << endl;
+					cin >> inColour;
+					cout << "Enter number of wheels: " << endl;
+					cin >> inNumberOfWheels;
+					cout << "Enter weight: " << endl;
+					cin >> inWeight;
+					cout << "Enter type of load: " << endl;
+					cin >> inLoad;
+
+					Vehicle* ptrTruck = new Truck("", inManufacturer, inModel, inRegnumber, inColour, inNumberOfWheels,inWeight, inLoad);
+					garage.addVehicle(ptrTruck);
+				}
 			}
-			if (addVehicleInput == 2)
+			else
 			{
-				string inMotorcycleManufacturer;
-				string inMotorcycleModel;
-				string  inMotorcycleRegnumber;
-				string inMotorcycleColour;
-				int inMotorcycleNumberOfWheels;
-				short int inMotorcycleNumberOfCylinders;
-				int inMotorcycleChassiNumber;
-
-				cout << "Enter manufacturer: " << endl;
-				cin >> inMotorcycleManufacturer;
-				cout << "Enter model: " << endl;
-				cin >> inMotorcycleModel;
-				cout << "Enter regnumber: " << endl;
-				cin >> inMotorcycleRegnumber;
-				cout << "Enter colour:" << endl;
-				cin >> inMotorcycleColour;
-				cout << "Enter number of wheels: " << endl;
-				cin >> inMotorcycleNumberOfWheels;
-				cout << "Enter number of cylinders: " << endl;
-				cin >> inMotorcycleNumberOfCylinders;
-				cout << "Enter chassinumber: " << endl;
-				cin >> inMotorcycleChassiNumber;
-
-				Vehicle* ptrMotorcycle = new Motorcycle("", inMotorcycleManufacturer, inMotorcycleModel, inMotorcycleRegnumber, inMotorcycleColour, inMotorcycleNumberOfWheels, inMotorcycleNumberOfCylinders, inMotorcycleChassiNumber);
-				garage.addVehicle(ptrMotorcycle);
+			cout << "Garage is full" << endl;
 			}
-			if (addVehicleInput == 3)
-			{
-				string inCarManufacturer;
-				string inCarModel;
-				string  inCarRegnumber;
-				string inCarColour;
-				int inCarNumberOfWheels;
-				string inCarChassi;
-				int inCarHorsepower;
-
-				cout<< "Enter manufacturer: " << endl;
-				cin >> inCarManufacturer;
-				cout << "Enter model: " << endl;
-				cin >> inCarModel;
-				cout << "Enter regnumber: " << endl;
-				cin >> inCarRegnumber;
-				cout << "Enter colour:" << endl;
-				cin >> inCarColour;
-				cout << "Enter number of wheels: " << endl;
-				cin >> inCarNumberOfWheels;
-				cout << "Enter chassitype: " << endl;
-				cin >> inCarChassi;
-				cout << "Enter horsepower: " << endl;
-				cin >> inCarHorsepower;
-				Vehicle* ptrCar = new Car("", inCarManufacturer, inCarModel, inCarRegnumber, inCarColour, inCarNumberOfWheels, inCarChassi, inCarHorsepower);
-
-				garage.addVehicle(ptrCar);				
-			}
-		}
-			/*
-			if (addVehicleInput == 4)
-			{
-				cout << "Enter manufacturer: " << endl;
-				cin >> inManufacturer;
-				cout << "Enter model: " << endl;
-				cin >> inModel;
-				cout << "Enter regnumber: " << endl;
-				cin >> inRegnumber;
-				cout << "Enter colour:" << endl;
-				cin >> inColour;
-				cout << "Enter number of wheels: " << endl;
-				cin >> inNumberOfWheels;
-			}
-
-			if (addVehicleInput == 5)
-			{
-				cout << "Enter manufacturer: " << endl;
-				cin >> inManufacturer;
-				cout << "Enter model: " << endl;
-				cin >> inModel;
-				cout << "Enter regnumber: " << endl;
-				cin >> inRegnumber;
-				cout << "Enter colour:" << endl;
-				cin >> inColour;
-				cout << "Enter number of wheels: " << endl;
-				cin >> inNumberOfWheels;
-			}
-			*/
 			cout << endl;
 			break;
-
+		}
 	
 		case 2:
 		{
+			system("cls");
 			string inputRemoveVehicle;
 			cout << endl;
 			cout << "Enter the registartionnumber of the vehicle you want to remove: " << endl;
 			cin >> inputRemoveVehicle;
-
-			garage.SearchAndRemove(garage.myGarage, inputRemoveVehicle);
-
+			garage.SearchAndRemove(inputRemoveVehicle);
 			cout << endl;
 			break;
 		}
 
 		case 3:
 		{
+			system("cls");
 			cout << "\n Search for a vehicle with reg-number:";
 			cin >> userSearch;
-			garage.searchRegnr(garage.myGarage, userSearch);
+			garage.searchRegnr(userSearch);
 			cout << endl;
 			break;
 		}
 
 		case 4:
 		{
+			system("cls");
+			int intAttributSearch;
+			string strAttributSearch;
+			int searchSelection;
 			cout << endl;
 			cout << "Choose what attribute you want to search for" << endl;
 			cout << "1. Manufacturer" << endl;
 			cout << "2. Model" << endl;
 			cout << "3. Colour" << endl;
 			cout << "4. Number of wheels" << endl;
-			cout << "5. " << endl;
-	
+			
+			cin >> searchSelection;
+
+			if (searchSelection == 1)
+			{
+				cout << "Enter the manufacturer you would like to search for: " << endl;
+				cin >> strAttributSearch;
+				garage.searchByAttributManufacturer(strAttributSearch);
+			}
+
+			if (searchSelection == 2)
+			{
+				cout << "Enter the model you want to search for: " << endl;
+				cin >> strAttributSearch;
+				garage.searchByAttributModel(strAttributSearch);
+			}
+			if (searchSelection == 3)
+			{
+				cout << "Enter colour you want to search for: " << endl;
+				cin >> strAttributSearch;
+				garage.searchByAttributColour(strAttributSearch);
+			}
+
+			if (searchSelection == 4)
+			{
+				cout << "Enter number of wheels you want to search for: " << endl;
+				cin >> intAttributSearch;
+				garage.searchByAttributNumberOfWheels(intAttributSearch);				
+			}	
 			cout << endl;
 			break;
 		}
 
 		case 5:
 		{
+			system("cls");
 			cout << endl;
-			garage.printAllVehicles(garage.myGarage);
+			garage.printAllVehicles();
 			cout << endl;
 			break;
 		}
 
 		case 6:
 		{
+			system("cls");
 			int listInput;
 			cout << endl;
 			cout << "Wich vehicletype would you like to list?" << endl;
@@ -499,27 +769,42 @@ int main()
 			cin >> listInput;
 			if (listInput == 1)
 			{
-
+				cout << "Here is all the bicycles in the garage:" << endl;
+				garage.printAllBicycles();
 			}
+
 			if (listInput==2)
 			{
 				cout << "Here is all the motorcycles in the garage:" << endl;
-				garage.printAllMotorcycles(garage.myGarage);
-
+				garage.printAllMotorcycles();
 			}
+
 			if (listInput==3)
 			{
 				cout << "Here is all the cars in the garage:" << endl;
-				garage.printAllCars(garage.myGarage);
+				garage.printAllCars();
+			}
+
+			if (listInput == 4)
+			{
+				cout << "Here is all the buses in the garage:" << endl;
+				garage.printAllBuses();
+			}
+
+			if (listInput == 5)
+			{
+				cout << "Here is all the trucks in the garage:" << endl;
+				garage.printAllTrucks();
 			}
 			cout << endl;
 			break;
 		}
 
-
 		case 0:
 		{
 			cout << endl;
+			garage.Destroy();
+			system("cls");
 			cout << endl;
 			break;
 		}
@@ -528,30 +813,6 @@ int main()
 			cout << endl;
 		}
 
-	} while (selection != 0);			
-
-
-	garage.myGarage[1]->output();
-	garage.myGarage[2]->output();
-	garage.myGarage.erase(remove(garage.myGarage.begin(), garage.myGarage.end(), garage.myGarage[1]), garage.myGarage.end()); // inte kopplad till counters i detta läge
-	garage.myGarage[1]->output();
-	garage.myGarage[2]->output();
-
-	
-	//garage.removeVehicle(ptrCarOne); // calls the removeVehicle-function and removes the element and deletes the pointer-object	
-	
-
-	cout << "Main-counter " << counter << endl;
-	cout <<"MC-counter "<< motorcycleCounter <<endl;
-	cout <<"CAR-counter "<< carCounter << endl;
-	cout << endl;
-
-	
-
-	
-
-
+	} while (selection != 0);
 	return 0;
 }
-
-
