@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <chrono>
 
 using namespace std;
 //Global variables
@@ -76,6 +75,7 @@ protected:
 	int year;	
 
 public:
+	
 
 	Bicycle(string a, string b, string c, string d, string e, short int i, short int inkNumberOfGears, int inkYear) : Vehicle(a, b, c, d, e, i)
 	{
@@ -99,7 +99,7 @@ public:
 
 	void output()
 	{
-		cout << "\n*************\n" << "Type: " << this->vehicleType << "\nManufacturer: " << this->manufacturer << " \nModel: " << this->model << "\nRegistrationnumber: " << this->registrationNumber << "\nColour: " << this->colour << "\nNumber of wheels: " << this->numberOfWheels << "\nNumber of gears: " << this->numberOfGears << "\nYear: " << this->year << "\n*************\n" << endl;
+		cout << "\n*************\n" << "Type: " << vehicleType << "\nManufacturer: " << manufacturer << " \nModel: " << model << "\nRegistrationnumber: " << registrationNumber << "\nColour: " << colour << "\nNumber of wheels: " << numberOfWheels << "\nNumber of gears: " << numberOfGears << "\nYear: " << year << "\n*************\n" << endl;
 	}
 
 	~Bicycle()
@@ -137,7 +137,7 @@ public:
 
 	void output()
 	{
-		cout << "\n*************\n" << "Type: " << this->vehicleType << "\nManufacturer: " << this->manufacturer << " \nModel: " << this->model << "\nRegistrationnumber: " << this->registrationNumber << "\nColour: " << this->colour << "\nNumber of wheels: " << this->numberOfWheels << "\nNumber of cylinders: " << this->numberOfCylinders << "\nChassinumber: "<< this->chassiNumber<<"\n*************\n" << endl;
+		cout << "\n*************\n" << "Type: " << vehicleType << "\nManufacturer: " << manufacturer << " \nModel: " << model << "\nRegistrationnumber: " << registrationNumber << "\nColour: " << colour << "\nNumber of wheels: " << numberOfWheels << "\nNumber of cylinders: " << numberOfCylinders << "\nChassinumber: "<< chassiNumber<<"\n*************\n" << endl;
 	}
 
 	~Motorcycle()
@@ -175,7 +175,7 @@ public:
 	
 	void output()
 	{
-		cout << "\n*************\n" << "Type: " << this->vehicleType << "\nManufacturer: " << this->manufacturer << " \nModel: " << this->model << "\nRegistrationnumber: " << this->registrationNumber << "\nColour: " << this->colour << "\nNumber of wheels: " << this->numberOfWheels << "\nChassi: " << this->chassi << "\nHorsepower: " << this->horsePower << "\n*************\n" << endl;
+		cout << "\n*************\n" << "Type: " << vehicleType << "\nManufacturer: " << manufacturer << " \nModel: " << model << "\nRegistrationnumber: " << registrationNumber << "\nColour: " << colour << "\nNumber of wheels: " << numberOfWheels << "\nChassi: " << chassi << "\nHorsepower: " << horsePower << "\n*************\n" << endl;
 	}	
 
 	~Car()
@@ -215,7 +215,7 @@ public:
 
 	void output()
 	{
-		cout << "\n*************\n" << "Type: " << this->vehicleType << "\nManufacturer: " << this->manufacturer << " \nModel: " << this->model << "\nRegistrationnumber: " << this->registrationNumber << "\nColour: " << this->colour << "\nNumber of wheels: " << this->numberOfWheels << "\nNumber of doors: " << this->numberOfDoors << "\nNumber of passengers: " << this->numberOfPassengers << "\n*************\n" << endl;
+		cout << "\n*************\n" << "Type: " << vehicleType << "\nManufacturer: " << manufacturer << " \nModel: " << model << "\nRegistrationnumber: " << registrationNumber << "\nColour: " << colour << "\nNumber of wheels: " << numberOfWheels << "\nNumber of doors: " << numberOfDoors << "\nNumber of passengers: " << numberOfPassengers << "\n*************\n" << endl;
 	}
 
 	~Bus()
@@ -254,7 +254,7 @@ public:
 
 	void output()
 	{
-		cout << "\n*************\n" << "Type: " << this->vehicleType << "\nManufacturer: " << this->manufacturer << " \nModel: " << this->model << "\nRegistrationnumber: " << this->registrationNumber << "\nColour: " << this->colour << "\nNumber of wheels: " << this->numberOfWheels << "\nWeight: "<< this->weight <<"\nType of load: " << this->load << "\n*************\n" << endl;
+		cout << "\n*************\n" << "Type: " << vehicleType << "\nManufacturer: " << manufacturer << " \nModel: " << model << "\nRegistrationnumber: " << registrationNumber << "\nColour: " << colour << "\nNumber of wheels: " << numberOfWheels << "\nWeight: "<< weight <<"\nType of load: " << load << "\n*************\n" << endl;
 	}
 
 	~Truck()
@@ -302,13 +302,11 @@ public:
 	}
 
 	Vehicle* SearchAndRemove(string y)
-	{
-		
+	{		
 		for (int i = 0; i < myGarage.size(); i++)
 		{
 			if (myGarage[i]->get_RegistrationNumber() == y)
 			{
-
 				if (myGarage[i]->get_VehicleType() == "Bicycle")
 				{
 					bicycleCounter--;
@@ -329,12 +327,10 @@ public:
 				{
 					truckCounter--;
 				}
-
 				cout << "Found your vehicle, it is now being removed\n" << endl;
 				myGarage[i]->output();
 				delete myGarage[i];
 				counter--;
-
 				myGarage.erase(remove(myGarage.begin(), myGarage.end(), myGarage[i]), myGarage.end());
 				break;
 			}
@@ -399,7 +395,6 @@ public:
 				myGarage[i]->output();
 			}
 		}
-
 		cout << "Number of cars in the garage is: " << carCounter << "\n" << endl;
 	}
 
@@ -812,7 +807,6 @@ int main()
 		default: cout << selection << " is not a valid menu item.\n";
 			cout << endl;
 		}
-
 	} while (selection != 0);
 	return 0;
 }

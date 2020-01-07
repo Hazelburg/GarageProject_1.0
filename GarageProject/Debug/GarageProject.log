@@ -1,15 +1,15 @@
 ﻿  GarageProject.cpp
-C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(307,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(349,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(360,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(370,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(383,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(395,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(408,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(420,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(432,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(445,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(457,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(469,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(481,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(306,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(345,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(356,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(366,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(379,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(391,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(403,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(415,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(427,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(440,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(452,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(464,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\GarageProject.cpp(476,21): warning C4018: '<': signed/unsigned mismatch
   GarageProject.vcxproj -> C:\Users\hasse\OneDrive\Skrivbord\GitHub\OOP & Design\GarageProject_1.0\GarageProject\Debug\GarageProject.exe

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Vehicle">
+    <Position X="5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAIgRCAMAAAQ4RAQAiABAAIATAABAAMKAABAAAAIkIA=</HashCode>
+      <FileName>GarageProject.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bicycle">
+    <Position X="2.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEACAAAAAAIBAAAgAAAAAACABAAAAAAQAAAAAAQAA=</HashCode>
+      <FileName>GarageProject.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Motorcycle">
+    <Position X="7.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAgAAAAAAACEAAAgCAAAAAAAAAQAA=</HashCode>
+      <FileName>GarageProject.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Car">
+    <Position X="0.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAQggQAAAAAQAAAACAAAAAAIAAAAAAAAAAI=</HashCode>
+      <FileName>GarageProject.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bus">
+    <Position X="5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAgAABAAAAAAAAAAAIAKAAAAAIIAAAAAAAIAAA=</HashCode>
+      <FileName>GarageProject.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Truck">
+    <Position X="9.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAMAQAQAQAAABAAAACAAAAAEgAAAAAAAAAAA=</HashCode>
+      <FileName>GarageProject.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Garage">
+    <Position X="7.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAACABAAQAAAEAAAECCAAAABCAAACoQAAAgQAAAA=</HashCode>
+      <FileName>GarageProject.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
